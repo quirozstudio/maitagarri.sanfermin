@@ -16,8 +16,16 @@
   box-sizing: border-box;
 }
 
+*,
+*::before,
+*::after {
+  min-width: 0;
+}
+
 html {
   scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 body {
@@ -29,6 +37,18 @@ body {
     radial-gradient(circle at 85% 32%, rgba(199, 123, 51, 0.12), transparent 24rem),
     linear-gradient(135deg, #090806 0%, #17100b 42%, #0c0b09 100%);
   overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+li,
+a,
+button,
+span {
+  overflow-wrap: anywhere;
 }
 
 body::before {
@@ -581,7 +601,7 @@ h3 {
 }
 
 .wine-grid {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: minmax(0, 1fr);
 }
 
 .wine-list {
@@ -827,10 +847,10 @@ body::before {
 }
 
 .hero h1 {
-  max-width: 9ch;
+  max-width: 10ch;
   margin: 0 auto;
   color: var(--sf-white);
-  font-size: clamp(3.35rem, 17vw, 6.8rem);
+  font-size: clamp(2.65rem, 13vw, 6.8rem);
   text-shadow: 0 14px 34px rgba(0, 0, 0, 0.72);
 }
 
@@ -838,6 +858,7 @@ body::before {
   color: var(--sf-paper);
   margin-top: 0.55rem;
   margin-bottom: 0.75rem;
+  font-size: clamp(1.45rem, 7vw, 3.4rem);
 }
 
 .hero-copy {

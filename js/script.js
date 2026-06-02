@@ -438,11 +438,18 @@ const openInfo = (key, visibleTitle) => {
   const info = dishInfo[key];
   if (!info && !detail) return;
 
+  const localizedDetail = typeof detail?.detail === "string"
+    ? detail.detail
+    : detail?.detail?.[currentLanguage] || detail?.detail?.es;
   infoTitle.textContent = visibleTitle || key;
   const touristText = typeof detail?.touristInfo === "string"
     ? detail.touristInfo
     : detail?.touristInfo?.[currentLanguage] || detail?.touristInfo?.es;
-  infoDescription.textContent = touristText || detail?.detail || info?.[currentLanguage] || info?.es;
+  infoDescription.textContent = touristText
+    || (currentLanguage !== "es" ? info?.[currentLanguage] : "")
+    || localizedDetail
+    || info?.[currentLanguage]
+    || info?.es;
   infoModal.classList.add("open");
   infoModal.setAttribute("aria-hidden", "false");
   document.body.classList.add("modal-open");
