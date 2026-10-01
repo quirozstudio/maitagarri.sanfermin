@@ -49,13 +49,7 @@ const dishAllergens = {
   "Tiramisú": ["Gluten", "Huevo", "Lácteos"],
   "Sablé de mango y coco": ["Gluten", "Huevo", "Lácteos"],
   "Cuajada de leche de oveja": ["Lácteos", "Frutos secos"],
-  "Helado": ["Lácteos"],
-  "El Mozo Valiente": ["Gluten", "Lácteos"],
-  "El Chupinazo": ["Gluten", "Lácteos", "Sulfitos"],
-  "El Toro Bravo": ["Gluten", "Lácteos", "Sulfitos"],
-  "El Pobre de Mí": ["Gluten", "Mostaza", "Sulfitos"],
-  "El Pañuelico Rojo": ["Gluten", "Sulfitos"],
-  "La Reina del Encierro": ["Gluten", "Lácteos", "Mostaza"]
+  "Helado": ["Lácteos"]
 };
 
 const menuDetails = {
@@ -200,64 +194,10 @@ const menuDetails = {
   "Helado": {
     detail: "Pregunta por nuestra variedad de helados.",
     price: "5"
-  },
-  "El Mozo Valiente": {
-    detail: "Bocadillo de lomo con queso y pimiento verde.",
-    price: "8,00"
-  },
-  "El Chupinazo": {
-    detail: "Pechuga de pollo a la plancha con queso y cebolla caramelizada.",
-    price: "8,00"
-  },
-  "El Toro Bravo": {
-    detail: "Bocadillo de bacon con queso y pimiento verde.",
-    price: "8,00"
-  },
-  "El Pobre de Mí": {
-    detail: "Perrito caliente con salchicha, cebolla, kétchup y mostaza.",
-    price: "6,00"
-  },
-  "El Pañuelico Rojo": {
-    detail: "Bocadillo de jamón serrano con pimiento verde.",
-    price: "8,00"
-  },
-  "La Reina del Encierro": {
-    detail: "Hamburguesa Maitagarri con carne de ternera, pepinillos en vinagre, cebolla, queso y salsa especial.",
-    price: "12,00"
   }
 };
 
 const dishInfo = {
-  "Magras con tomate, 2 huevos fritos y patatas": {
-    es: "Lonchas finas de cerdo curado cocinadas con tomate, acompañadas de huevos fritos y patatas. Un almuerzo muy navarro para empezar fuerte la mañana.",
-    en: "Thin slices of cured pork cooked with tomato, served with fried eggs and potatoes. A very Navarrese breakfast to start the day strong.",
-    fr: "Fines tranches de porc seche cuisinees a la tomate, avec oeufs frits et pommes de terre. Un petit dejeuner tres navarrais."
-  },
-  "Bacon, 2 huevos fritos y patatas": {
-    es: "Bacon dorado a la plancha, huevos fritos al momento y patatas crujientes. Sencillo, contundente y perfecto para San Fermín.",
-    en: "Grilled bacon, freshly fried eggs and crisp potatoes. Simple, generous and perfect for San Fermin.",
-    fr: "Bacon grille, oeufs frits minute et pommes de terre croustillantes. Simple, genereux et parfait pour San Fermin."
-  },
-  "Chistorra con tomate, 2 huevos fritos y patatas": {
-    es: "Chistorra navarra jugosa con tomate casero, huevos fritos y patatas. Sabor clásico de barra pamplonesa.",
-    en: "Juicy Navarrese chistorra with homemade tomato, fried eggs and potatoes. A classic Pamplona bar flavor.",
-    fr: "Chistorra navarraise avec tomate maison, oeufs frits et pommes de terre. Saveur classique de Pampelune."
-  },
-  "Lomo de cerdo, 2 huevos fritos y patatas": {
-    es: "Lomo de cerdo marcado a la plancha, servido con huevos fritos y patatas. Un almuerzo directo y sabroso.",
-    en: "Grilled pork loin served with fried eggs and potatoes. A direct and tasty breakfast.",
-    fr: "Longe de porc grillee, servie avec oeufs frits et pommes de terre. Un plat simple et savoureux."
-  },
-  "Ajoarriero a la navarra con un huevo frito": {
-    es: "Guiso tradicional de bacalao desmigado con verduras, ligado con salsa sabrosa y terminado con huevo frito.",
-    en: "Traditional stew of shredded cod with vegetables, bound in a savory sauce and finished with a fried egg.",
-    fr: "Plat traditionnel de morue emiettee avec legumes, sauce savoureuse et oeuf frit."
-  },
-  "Estofado de toro con patatas fritas": {
-    es: "Carne de toro cocinada lentamente hasta quedar tierna, con salsa intensa y patatas fritas para acompañar.",
-    en: "Bull meat slow-cooked until tender, with a deep sauce and fries on the side.",
-    fr: "Viande de taureau mijotee jusqu'a tendrete, avec sauce intense et frites."
-  },
   "Chistorra de Arbizu": {
     es: "Chistorra artesana de Arbizu, jugosa y especiada, servida caliente para compartir.",
     en: "Artisan chistorra from Arbizu, juicy and lightly spiced, served hot to share.",
@@ -478,36 +418,6 @@ const dishInfo = {
     en: "House ice cream depending on available flavors.",
     fr: "Glace maison selon les parfums disponibles."
   },
-  "El Mozo Valiente": {
-    es: "Bocadillo de lomo, queso y pimiento verde, sencillo y potente.",
-    en: "Pork loin, cheese and green pepper sandwich, simple and generous.",
-    fr: "Sandwich longe de porc, fromage et poivron vert, simple et genereux."
-  },
-  "El Chupinazo": {
-    es: "Pechuga de pollo con queso y cebolla caramelizada, jugoso y equilibrado.",
-    en: "Chicken breast with cheese and caramelized onion, juicy and balanced.",
-    fr: "Blanc de poulet avec fromage et oignon caramelise, juteux et equilibre."
-  },
-  "El Toro Bravo": {
-    es: "Bocadillo de bacon, queso y pimiento verde para un bocado directo.",
-    en: "Bacon, cheese and green pepper sandwich for a direct bite.",
-    fr: "Sandwich bacon, fromage et poivron vert pour une bouchee directe."
-  },
-  "El Pobre de Mí": {
-    es: "Perrito caliente con salchicha, cebolla, kétchup y mostaza.",
-    en: "Hot dog with sausage, onion, ketchup and mustard.",
-    fr: "Hot-dog avec saucisse, oignon, ketchup et moutarde."
-  },
-  "El Pañuelico Rojo": {
-    es: "Jamón serrano con pimiento verde, sabor clásico de barra.",
-    en: "Serrano ham with green pepper, a classic bar flavor.",
-    fr: "Jambon serrano avec poivron vert, saveur classique de comptoir."
-  },
-  "La Reina del Encierro": {
-    es: "Hamburguesa Maitagarri con ternera, pepinillos, cebolla, queso y salsa especial.",
-    en: "Maitagarri burger with beef, pickles, onion, cheese and house sauce.",
-    fr: "Burger Maitagarri avec boeuf, cornichons, oignon, fromage et sauce maison."
-  }
 };
 
 const setLanguage = (language) => {
@@ -654,12 +564,8 @@ const addWineAllergens = () => {
 };
 
 const touristInfo = {
-  "Magras con tomate, 2 huevos fritos y patatas": "Las magras son lonchas finas de cerdo curado, muy habituales en almuerzos navarros. Se sirven con tomate, huevos fritos y patatas: un plato contundente para empezar San Fermín.",
-  "Chistorra con tomate, 2 huevos fritos y patatas": "La chistorra es un embutido fresco típico de Navarra, parecido a una longaniza fina con pimentón. Aquí se sirve con tomate, huevos fritos y patatas.",
   "Chistorra de Arbizu": "La chistorra es un embutido navarro fresco, fino y especiado. Arbizu es una localidad navarra muy reconocida por este producto tradicional.",
-  "Ajoarriero a la navarra con un huevo frito": "El ajoarriero navarro es un guiso tradicional de bacalao desmigado con verduras y salsa melosa. Se acompaña con huevo frito.",
   "Ajoarriero navarro": "Guiso típico navarro de bacalao desmigado, verduras y tomate, cocinado lentamente hasta quedar meloso y lleno de sabor.",
-  "Estofado de toro con patatas fritas": "Guiso de carne de toro cocinado lentamente hasta quedar tierno. Es un plato intenso, festivo y muy ligado al ambiente de San Fermín.",
   "Estofado de toro": "Carne de toro guisada a fuego lento con vino tinto hasta quedar melosa y muy tierna. Plato potente y tradicional.",
   "Lagarto ibérico": "No es lagarto animal: es un corte del cerdo ibérico, situado entre las costillas. Es jugoso, sabroso y funciona muy bien a la parrilla.",
   "Melosos de carrilleras": "Las carrilleras son piezas de la mejilla del animal. Cocinadas lentamente quedan muy tiernas, gelatinosas y suaves.",
@@ -689,29 +595,13 @@ const touristInfo = {
 };
 
 const touristInfoTranslations = {
-  "Magras con tomate, 2 huevos fritos y patatas": {
-    en: "Magras are thin slices of cured pork, very common in Navarrese breakfasts. They are served with tomato, fried eggs and potatoes: a hearty dish to start San Fermin.",
-    fr: "Les magras sont de fines tranches de porc seche, tres courantes dans les petits dejeuners navarrais. Elles sont servies avec tomate, oeufs frits et pommes de terre."
-  },
-  "Chistorra con tomate, 2 huevos fritos y patatas": {
-    en: "Chistorra is a fresh Navarrese sausage, similar to a thin paprika-seasoned longaniza. Here it is served with tomato, fried eggs and potatoes.",
-    fr: "La chistorra est une saucisse fraiche navarraise, fine et relevee au paprika. Elle est servie ici avec tomate, oeufs frits et pommes de terre."
-  },
   "Chistorra de Arbizu": {
     en: "Chistorra is a fresh, thin and lightly spiced Navarrese sausage. Arbizu is a Navarrese town well known for this traditional product.",
     fr: "La chistorra est une saucisse navarraise fraiche, fine et epicee. Arbizu est une commune navarraise reconnue pour ce produit traditionnel."
   },
-  "Ajoarriero a la navarra con un huevo frito": {
-    en: "Navarrese ajoarriero is a traditional stew of shredded cod with vegetables and a rich sauce. It is served with a fried egg.",
-    fr: "L'ajoarriero navarrais est un ragout traditionnel de morue emiettee avec legumes et sauce onctueuse. Il est servi avec un oeuf frit."
-  },
   "Ajoarriero navarro": {
     en: "A typical Navarrese stew made with shredded cod, vegetables and tomato, slowly cooked until rich and tender.",
     fr: "Ragout typique navarrais de morue emiettee, legumes et tomate, mijote lentement jusqu'a obtenir une texture fondante."
-  },
-  "Estofado de toro con patatas fritas": {
-    en: "Bull meat stew cooked slowly until tender. It is an intense, festive dish closely linked to San Fermin.",
-    fr: "Ragout de viande de taureau mijote jusqu'a tendrete. C'est un plat intense, festif et lie a San Fermin."
   },
   "Estofado de toro": {
     en: "Bull meat stewed slowly with red wine until tender and silky. A powerful traditional dish.",
@@ -932,5 +822,7 @@ addInfoButtons();
 orderCartaSections();
 numberCartaDishes();
 setLanguage(currentLanguage);
-showPanel(localStorage.getItem("maitagarri-panel") || "almuerzo", false);
+const savedPanel = localStorage.getItem("maitagarri-panel");
+const initialPanel = [...menuPanels].some((panel) => panel.dataset.panel === savedPanel) ? savedPanel : "sidreria";
+showPanel(initialPanel, false);
 toggleBackTop();
