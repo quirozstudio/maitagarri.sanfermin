@@ -790,7 +790,7 @@ const orderCartaSections = () => {
 
 const numberCartaDishes = () => {
   const sections = ["#entrantes", "#mundo", "#carnes", "#mar", "#postres"];
-  let number = 21;
+  let number = 1;
 
   sections.forEach((selector) => {
     const section = document.querySelector(selector);
@@ -808,6 +808,14 @@ const numberCartaDishes = () => {
   });
 };
 
+const numberSidreriaDishes = () => {
+  const dishes = document.querySelectorAll("#sidreria .menu-column li");
+
+  dishes.forEach((dish, index) => {
+    dish.dataset.number = String(index + 1).padStart(2, "0");
+  });
+};
+
 panelButtons.forEach((button) => {
   button.addEventListener("click", () => showPanel(button.dataset.panelTarget));
 });
@@ -821,8 +829,9 @@ addWineAllergens();
 addInfoButtons();
 orderCartaSections();
 numberCartaDishes();
+numberSidreriaDishes();
 setLanguage(currentLanguage);
 const savedPanel = localStorage.getItem("maitagarri-panel");
-const initialPanel = [...menuPanels].some((panel) => panel.dataset.panel === savedPanel) ? savedPanel : "sidreria";
+const initialPanel = [...menuPanels].some((panel) => panel.dataset.panel === savedPanel) ? savedPanel : "carta";
 showPanel(initialPanel, false);
 toggleBackTop();

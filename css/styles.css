@@ -439,31 +439,15 @@ h3 {
   line-height: 1.45;
 }
 
-.sidreria-panel .menu-column.accent {
-  counter-reset: sidreria-second 9;
-}
-
-.sidreria-panel .menu-column.accent li::before {
-  counter-increment: sidreria-second;
-  content: counter(sidreria-second, decimal-leading-zero);
+.sidreria:not(.seasonal-menu) .menu-column li::before {
+  content: attr(data-number);
   display: inline-flex;
-  min-width: 1.85rem;
+  min-width: 2rem;
+  justify-content: center;
   margin-right: 0.45rem;
-  color: var(--gold);
-  font-size: 0.72rem;
-  font-weight: 900;
-}
-
-.sidreria-panel .menu-column:nth-of-type(3) {
-  counter-reset: sidreria-dessert 14;
-}
-
-.sidreria-panel .menu-column:nth-of-type(3) li::before {
-  counter-increment: sidreria-dessert;
-  content: counter(sidreria-dessert, decimal-leading-zero);
-  display: inline-flex;
-  min-width: 1.85rem;
-  margin-right: 0.45rem;
+  padding: 0.2rem 0.48rem;
+  border: 1px solid rgba(215, 180, 106, 0.28);
+  border-radius: 999px;
   color: var(--gold);
   font-size: 0.72rem;
   font-weight: 900;
