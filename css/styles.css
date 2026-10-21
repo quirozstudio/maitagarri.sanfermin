@@ -469,6 +469,11 @@ h3 {
   font-weight: 900;
 }
 
+.sidreria-panel.holiday-menu-panel .menu-column li::before {
+  display: none;
+  content: none;
+}
+
 .menu-panel[data-panel="carta"] .line-dish::before,
 .menu-panel[data-panel="carta"] .tile::before,
 .carta-number {
