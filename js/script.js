@@ -1,5 +1,4 @@
-const languageButtons = document.querySelectorAll(".lang-btn");
-const translatableElements = document.querySelectorAll("[data-es]");
+const languageSelect = document.querySelector("#language-select");
 const backTopButton = document.querySelector(".back-top");
 const revealElements = document.querySelectorAll(".reveal");
 const panelButtons = document.querySelectorAll("[data-panel-target]");
@@ -9,20 +8,59 @@ const infoTitle = document.querySelector("#info-title");
 const infoDescription = document.querySelector("#info-description");
 const closeInfoButtons = document.querySelectorAll("[data-close-info]");
 
-let currentLanguage = localStorage.getItem("maitagarri-language") || "es";
+const supportedLanguages = ["es", "en", "fr", "eu", "ca", "it", "de", "ko"];
+const extraTranslations = window.MAITAGARRI_TRANSLATIONS || {};
+const detailTranslations = window.MAITAGARRI_DETAIL_TRANSLATIONS || {};
+const storedLanguage = localStorage.getItem("maitagarri-language");
+let currentLanguage = supportedLanguages.includes(storedLanguage) ? storedLanguage : "es";
+
+const translateSource = (source, language, fallback = source) => {
+  if (!source) return fallback;
+  return extraTranslations[language]?.[source]
+    || detailTranslations[language]?.[source]
+    || fallback;
+};
+
+const getElementLanguageValue = (element, language) => {
+  const source = element.dataset.i18nSource || element.dataset.es;
+  if (language === "es") return source;
+  return element.dataset[language]
+    || translateSource(source, language, element.dataset.en || source);
+};
+
+const getLocalizedObjectValue = (value, language) => {
+  if (!value) return "";
+  if (typeof value === "string") {
+    const fallback = ["es", "en", "fr"].includes(language) ? value : "";
+    return translateSource(value, language, fallback);
+  }
+  const source = value.es || value.en || "";
+  return value[language] || translateSource(source, language, value.en || source);
+};
+
+const interfaceLabels = {
+  es: { navigation: "Principal", language: "Selector de idioma", categories: "Categorías principales", dishInfo: "Información del plato", close: "Cerrar", top: "Volver arriba" },
+  en: { navigation: "Main navigation", language: "Language selector", categories: "Main categories", dishInfo: "Dish information", close: "Close", top: "Back to top" },
+  fr: { navigation: "Navigation principale", language: "Sélecteur de langue", categories: "Catégories principales", dishInfo: "Informations du plat", close: "Fermer", top: "Retour en haut" },
+  eu: { navigation: "Nabigazio nagusia", language: "Hizkuntza-hautatzailea", categories: "Kategoria nagusiak", dishInfo: "Plateraren informazioa", close: "Itxi", top: "Gora itzuli" },
+  ca: { navigation: "Navegació principal", language: "Selector d'idioma", categories: "Categories principals", dishInfo: "Informació del plat", close: "Tancar", top: "Tornar a dalt" },
+  it: { navigation: "Navigazione principale", language: "Selettore lingua", categories: "Categorie principali", dishInfo: "Informazioni sul piatto", close: "Chiudi", top: "Torna in alto" },
+  de: { navigation: "Hauptnavigation", language: "Sprachauswahl", categories: "Hauptkategorien", dishInfo: "Gerichtsinformationen", close: "Schließen", top: "Nach oben" },
+  ko: { navigation: "주요 메뉴", language: "언어 선택", categories: "주요 카테고리", dishInfo: "요리 정보", close: "닫기", top: "맨 위로" }
+};
 
 const allergenLabels = {
-  Gluten: { es: "Gluten", en: "Gluten", fr: "Gluten" },
-  Huevo: { es: "Huevo", en: "Egg", fr: "Oeuf" },
-  "Lácteos": { es: "Lácteos", en: "Dairy", fr: "Lait" },
-  "Frutos secos": { es: "Frutos secos", en: "Nuts", fr: "Fruits secs" },
-  Pescado: { es: "Pescado", en: "Fish", fr: "Poisson" },
-  Marisco: { es: "Marisco", en: "Shellfish", fr: "Crustacés" },
-  Moluscos: { es: "Moluscos", en: "Molluscs", fr: "Mollusques" },
-  Sulfitos: { es: "Sulfitos", en: "Sulphites", fr: "Sulfites" },
-  Mostaza: { es: "Mostaza", en: "Mustard", fr: "Moutarde" },
-  Sésamo: { es: "Sésamo", en: "Sesame", fr: "Sésame" },
-  Soja: { es: "Soja", en: "Soy", fr: "Soja" }
+  Gluten: { es: "Gluten", en: "Gluten", fr: "Gluten", eu: "Glutena", ca: "Gluten", it: "Glutine", de: "Gluten", ko: "글루텐" },
+  Huevo: { es: "Huevo", en: "Egg", fr: "Oeuf", eu: "Arrautza", ca: "Ou", it: "Uovo", de: "Ei", ko: "달걀" },
+  "Lácteos": { es: "Lácteos", en: "Dairy", fr: "Lait", eu: "Esnekiak", ca: "Lactis", it: "Latticini", de: "Milchprodukte", ko: "유제품" },
+  "Frutos secos": { es: "Frutos secos", en: "Nuts", fr: "Fruits secs", eu: "Fruitu lehorrak", ca: "Fruits secs", it: "Frutta secca", de: "Schalenfrüchte", ko: "견과류" },
+  Pescado: { es: "Pescado", en: "Fish", fr: "Poisson", eu: "Arraina", ca: "Peix", it: "Pesce", de: "Fisch", ko: "생선" },
+  Marisco: { es: "Marisco", en: "Shellfish", fr: "Crustacés", eu: "Itsaskia", ca: "Marisc", it: "Crostacei", de: "Krebstiere", ko: "갑각류" },
+  Moluscos: { es: "Moluscos", en: "Molluscs", fr: "Mollusques", eu: "Moluskuak", ca: "Mol·luscs", it: "Molluschi", de: "Weichtiere", ko: "연체류" },
+  Sulfitos: { es: "Sulfitos", en: "Sulphites", fr: "Sulfites", eu: "Sulfitoak", ca: "Sulfits", it: "Solfiti", de: "Sulfite", ko: "아황산염" },
+  Mostaza: { es: "Mostaza", en: "Mustard", fr: "Moutarde", eu: "Mostaza", ca: "Mostassa", it: "Senape", de: "Senf", ko: "겨자" },
+  Sésamo: { es: "Sésamo", en: "Sesame", fr: "Sésame", eu: "Sesamoa", ca: "Sèsam", it: "Sesamo", de: "Sesam", ko: "참깨" },
+  Soja: { es: "Soja", en: "Soy", fr: "Soja", eu: "Soja", ca: "Soja", it: "Soia", de: "Soja", ko: "대두" }
 };
 
 const dishAllergens = {
@@ -421,21 +459,25 @@ const dishInfo = {
 };
 
 const setLanguage = (language) => {
+  if (!supportedLanguages.includes(language)) return;
+
   currentLanguage = language;
   document.documentElement.lang = language;
 
   document.querySelectorAll("[data-es]").forEach((element) => {
-    const value = element.dataset[language];
-    if (value) {
-      element.textContent = value;
-    }
+    element.textContent = getElementLanguageValue(element, language);
   });
 
-  languageButtons.forEach((button) => {
-    const isActive = button.dataset.lang === language;
-    button.classList.toggle("active", isActive);
-    button.setAttribute("aria-pressed", String(isActive));
-  });
+  if (languageSelect) languageSelect.value = language;
+
+  const labels = interfaceLabels[language];
+  document.querySelector(".navbar")?.setAttribute("aria-label", labels.navigation);
+  languageSelect?.setAttribute("aria-label", labels.language);
+  document.querySelector(".language-switcher label")?.replaceChildren(document.createTextNode(labels.language));
+  document.querySelector(".qr-category-nav")?.setAttribute("aria-label", labels.categories);
+  document.querySelectorAll(".info-btn").forEach((button) => button.setAttribute("aria-label", labels.dishInfo));
+  document.querySelectorAll("[data-close-info]").forEach((button) => button.setAttribute("aria-label", labels.close));
+  backTopButton?.setAttribute("aria-label", labels.top);
 
   localStorage.setItem("maitagarri-language", language);
   addInfoButtons();
@@ -452,18 +494,13 @@ const openInfo = (key, visibleTitle) => {
   const info = dishInfo[key];
   if (!info && !detail) return;
 
-  const localizedDetail = typeof detail?.detail === "string"
-    ? detail.detail
-    : detail?.detail?.[currentLanguage] || detail?.detail?.es;
+  const localizedDetail = getLocalizedObjectValue(detail?.detail, currentLanguage);
   infoTitle.textContent = visibleTitle || key;
-  const touristText = typeof detail?.touristInfo === "string"
-    ? detail.touristInfo
-    : detail?.touristInfo?.[currentLanguage] || detail?.touristInfo?.es;
+  const touristText = getLocalizedObjectValue(detail?.touristInfo, currentLanguage);
   infoDescription.textContent = touristText
-    || (currentLanguage !== "es" ? info?.[currentLanguage] : "")
+    || getLocalizedObjectValue(info, currentLanguage)
     || localizedDetail
-    || info?.[currentLanguage]
-    || info?.es;
+    || getLocalizedObjectValue(info, currentLanguage);
   infoModal.classList.add("open");
   infoModal.setAttribute("aria-hidden", "false");
   document.body.classList.add("modal-open");
@@ -489,6 +526,11 @@ const addInfoButtons = () => {
         tag.dataset.es = label.es;
         tag.dataset.en = label.en;
         tag.dataset.fr = label.fr;
+        tag.dataset.eu = label.eu;
+        tag.dataset.ca = label.ca;
+        tag.dataset.it = label.it;
+        tag.dataset.de = label.de;
+        tag.dataset.ko = label.ko;
         tag.textContent = label[currentLanguage] || label.es;
         wrapper.appendChild(tag);
       });
@@ -502,7 +544,7 @@ const addInfoButtons = () => {
     button.className = "info-btn";
     button.type = "button";
     button.textContent = "?";
-    button.setAttribute("aria-label", "Información del plato");
+    button.setAttribute("aria-label", interfaceLabels[currentLanguage].dishInfo);
     button.addEventListener("click", (event) => {
       event.stopPropagation();
       const textSource = element.matches("li") ? element : element.querySelector("h3");
@@ -524,6 +566,7 @@ const applyMenuDetails = () => {
 
     const titleTarget = element.matches("li") ? element : element.querySelector("h3");
     if (detail.title && titleTarget) {
+      titleTarget.dataset.i18nSource ||= titleTarget.dataset.es;
       titleTarget.dataset.es = detail.title;
       if (currentLanguage === "es") titleTarget.textContent = detail.title;
     }
@@ -534,7 +577,7 @@ const applyMenuDetails = () => {
       text.dataset.es = detail.detail;
       text.dataset.en = info?.en || detail.detail;
       text.dataset.fr = info?.fr || detail.detail;
-      text.textContent = text.dataset[currentLanguage] || detail.detail;
+      text.textContent = getElementLanguageValue(text, currentLanguage);
       element.appendChild(text);
     }
 
@@ -727,9 +770,7 @@ document.addEventListener("keydown", (event) => {
   if (event.key === "Escape") closeInfo();
 });
 
-languageButtons.forEach((button) => {
-  button.addEventListener("click", () => setLanguage(button.dataset.lang));
-});
+languageSelect?.addEventListener("change", () => setLanguage(languageSelect.value));
 
 document.querySelectorAll('a[href^="#"]').forEach((link) => {
   link.addEventListener("click", (event) => {

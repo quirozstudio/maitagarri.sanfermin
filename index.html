@@ -7,7 +7,7 @@
   <title>Asador Maitagarri | Carta San Fermin 2026</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;600;700;800&family=Noto+Serif+KR:wght@600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
@@ -17,10 +17,18 @@
       <a class="nav-cta" href="#menu" data-es="Carta" data-en="Menu" data-fr="Carte">Carta</a>
     </nav>
 
-    <div class="language-switcher" aria-label="Selector de idioma">
-      <button class="lang-btn active" type="button" data-lang="es">ES</button>
-      <button class="lang-btn" type="button" data-lang="en">EN</button>
-      <button class="lang-btn" type="button" data-lang="fr">FR</button>
+    <div class="language-switcher">
+      <label class="sr-only" for="language-select">Seleccionar idioma</label>
+      <select id="language-select" class="lang-select" aria-label="Seleccionar idioma">
+        <option value="es">ES · Español</option>
+        <option value="en">EN · English</option>
+        <option value="fr">FR · Français</option>
+        <option value="eu">EU · Euskara</option>
+        <option value="ca">CA · Català</option>
+        <option value="it">IT · Italiano</option>
+        <option value="de">DE · Deutsch</option>
+        <option value="ko">KO · 한국어</option>
+      </select>
     </div>
 
     <div class="hero-content reveal">
@@ -364,6 +372,7 @@
 
   <button class="back-top" type="button" aria-label="Volver arriba">↑</button>
 
+  <script src="js/translations.js"></script>
   <script src="js/script.js"></script>
 </body>
 </html>
