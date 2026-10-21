@@ -706,12 +706,17 @@ h3 {
 }
 
 .reveal {
+  opacity: 1;
+  transform: none;
+}
+
+.js .reveal {
   opacity: 0;
   transform: translateY(1.4rem);
   transition: opacity 0.75s ease, transform 0.75s ease;
 }
 
-.reveal.visible {
+.js .reveal.visible {
   opacity: 1;
   transform: translateY(0);
 }
@@ -860,6 +865,8 @@ body::before {
   color: var(--sf-white);
   font-size: clamp(2.65rem, 13vw, 6.8rem);
   text-shadow: 0 14px 34px rgba(0, 0, 0, 0.72);
+  overflow-wrap: normal;
+  word-break: keep-all;
 }
 
 .season {
@@ -882,6 +889,7 @@ body::before {
 .qr-category-nav {
   position: sticky;
   top: 4.35rem;
+  scroll-margin-top: 6.2rem;
   z-index: 8;
   display: flex;
   gap: 0.55rem;
@@ -1251,5 +1259,13 @@ html[lang="ko"] .info-modal h2 {
 }
 
 html[lang="ko"] .hero h1 {
-  max-width: 14ch;
+  max-width: 100%;
+}
+
+@media (max-width: 359px) {
+  .hero h1 {
+    max-width: 100%;
+    font-size: clamp(2.35rem, 12vw, 4rem);
+    letter-spacing: -0.035em;
+  }
 }

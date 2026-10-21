@@ -1,3 +1,5 @@
+document.documentElement.classList.add("js");
+
 const languageSelect = document.querySelector("#language-select");
 const backTopButton = document.querySelector(".back-top");
 const revealElements = document.querySelectorAll(".reveal");
@@ -497,10 +499,11 @@ const openInfo = (key, visibleTitle) => {
   const localizedDetail = getLocalizedObjectValue(detail?.detail, currentLanguage);
   infoTitle.textContent = visibleTitle || key;
   const touristText = getLocalizedObjectValue(detail?.touristInfo, currentLanguage);
-  infoDescription.textContent = touristText
-    || getLocalizedObjectValue(info, currentLanguage)
-    || localizedDetail
-    || getLocalizedObjectValue(info, currentLanguage);
+  const localizedInfo = getLocalizedObjectValue(info, currentLanguage);
+  const description = ["es", "en", "fr"].includes(currentLanguage)
+    ? touristText || localizedInfo || localizedDetail
+    : localizedDetail || touristText || localizedInfo;
+  infoDescription.textContent = description;
   infoModal.classList.add("open");
   infoModal.setAttribute("aria-hidden", "false");
   document.body.classList.add("modal-open");
